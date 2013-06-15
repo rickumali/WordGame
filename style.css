@@ -1,0 +1,25 @@
+h1 {
+  text-align: center;
+}
+
+p.instructions {
+  text-align: center;
+  font-size: small;
+}
+
+table {
+  font-weight: monospace;
+  font-size: 200%;
+  border-collapse: collapse;
+  border: 1px solid #7a7;
+}
+
+table td {
+  text-align: center;
+  padding: 2px;
+  border: 1px solid #7a7;
+}
+
+td.green {
+  background: green;
+}
