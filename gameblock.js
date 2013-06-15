@@ -5,6 +5,7 @@ $(document).ready(function() {
 
   $("td").hover(function() {
     $(this).addClass("green");
+    console.log(jQuery.data($(this)[0], "data"));
   },function() {
     $(this).removeClass("green");
   });
