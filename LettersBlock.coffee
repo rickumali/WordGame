@@ -28,16 +28,9 @@ class LettersBlock
 
 lb = new LettersBlock(10,10)
 lb.genrandomletters()
-lb.logletters()
   
-for y in [0...lb.height]
-  for x in [0...lb.width]
-    console.log(lb.letter(x, y))
-
 jQuery ->
   $('#game_block').append('<table></table>')
-  console.log lb.height
-  console.log lb.width
 
   for y in [0...lb.height]
     $('table').append('<tr>')
