@@ -41,4 +41,4 @@ jQuery ->
       $td = $('tbody tr:last-child td:last-child')
       $td.append(lb.letter(x, y))
       $td.attr('id', tot)
-      jQuery.data($td[0], "data", { letter: lb.letter(x,y) })
+      jQuery.data($td[0], "data", { x: x, y: y, letter: lb.letter(x,y) })
