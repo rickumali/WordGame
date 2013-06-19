@@ -9,10 +9,19 @@ $(document).ready(function() {
     }
     $(this).addClass("green");
     if (selectedFirstChar) {
-      console.log("1   X: " + jQuery.data($(".first")[0], "data").x);
-      console.log("1   Y: " + jQuery.data($(".first")[0], "data").y);
-      console.log("CUR X: " + jQuery.data($(this)[0], "data").x);
-      console.log("CUR Y: " + jQuery.data($(this)[0], "data").y);
+      fx = jQuery.data($(".first")[0], "data").x;
+      fy = jQuery.data($(".first")[0], "data").y;
+      cx = jQuery.data($(this)[0], "data").x;
+      cy = jQuery.data($(this)[0], "data").y;
+      if (fx == cx) {
+        console.log("UP or DOWN");
+      }
+      if (fy == cy) {
+        console.log("LEFT OR RIGHT");
+      }
+      if (Math.abs(fx - cx) == Math.abs(fy - cy)) {
+        console.log("DIAGNOL");
+      }
     }
   },function() {
     $(this).removeClass("green");
