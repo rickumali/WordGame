@@ -13,15 +13,7 @@ $(document).ready(function() {
       fy = jQuery.data($(".first")[0], "data").y;
       cx = jQuery.data($(this)[0], "data").x;
       cy = jQuery.data($(this)[0], "data").y;
-      if (fx == cx) {
-        console.log("UP or DOWN");
-      }
-      if (fy == cy) {
-        console.log("LEFT OR RIGHT");
-      }
-      if (Math.abs(fx - cx) == Math.abs(fy - cy)) {
-        console.log("DIAGNOL");
-      }
+      drawbetween(fx, fy, cx, cy);
     }
   },function() {
     $(this).removeClass("green");
@@ -41,5 +33,17 @@ $(document).ready(function() {
       }
     }
   });
+
+  function drawbetween(fx, fy, cx, cy) {
+    if (fx == cx) {
+      console.log("UP or DOWN");
+    }
+    if (fy == cy) {
+      console.log("LEFT OR RIGHT");
+    }
+    if (Math.abs(fx - cx) == Math.abs(fy - cy)) {
+      console.log("DIAGNOL");
+    }
+  }
 
 });
