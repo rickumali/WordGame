@@ -37,16 +37,13 @@ $(document).ready(function() {
   function drawbetween(fx, fy, cx, cy) {
     if (fx == cx) {
       console.log("UP or DOWN");
-      // I'll come up with some better or more clever
+      // TODO: I'll come up with some better or more clever
       if (fy > cy) {
         for (i = cy; i < fy; i++) {
-          console.log("Set green: " + fx + "," + i + " = " + index(fx, i));
+          b="td#"+index(fx,i);
+          $(b).addClass("green");
         }
       } else if (fy < cy) {
-        for (i = fy; i < cy; i++) {
-          console.log("Set green: " + fx + "," + i);
-        }
-      } else {
       }
     }
     if (fy == cy) {
@@ -58,7 +55,7 @@ $(document).ready(function() {
   }
 
   function index(fx, fy) {
-    // NOTE: This doesn't work! Too bad! I have to figure 
+    // TODO: This doesn't work! Too bad! I have to figure 
     // out how to get the LetterBlock object from in here.
     // return (fx + fy * lb.width());
     return (fx + fy * 10);
