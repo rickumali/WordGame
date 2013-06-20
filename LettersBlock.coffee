@@ -36,7 +36,7 @@ jQuery ->
     $('table').append('<tr>')
 
     for x in [0...lb.width]
-      tot = x + y
+      tot = x + y * lb.width
       $('tbody tr:last-child').append('<td>')
       $td = $('tbody tr:last-child td:last-child')
       $td.append(lb.letter(x, y))
