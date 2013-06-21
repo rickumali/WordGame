@@ -25,7 +25,11 @@ $(document).ready(function() {
       $(this).unbind("hover");
       $(this).addClass("first");
     } else {
-      if (!selectedSecondChar) {
+      fx = jQuery.data($(".first")[0], "data").x;
+      fy = jQuery.data($(".first")[0], "data").y;
+      cx = jQuery.data($(this)[0], "data").x;
+      cy = jQuery.data($(this)[0], "data").y;
+      if (!selectedSecondChar && validshape(fx, fy, cx, cy)) {
         selectedSecondChar = true;
         $("td").unbind("hover");
         $(this).addClass("second");
@@ -33,6 +37,10 @@ $(document).ready(function() {
       }
     }
   });
+
+  function validshape(fx, fy, cx, cy) {
+    return (fx == cx) || (fy == cy) || (Math.abs(fx - cx) == Math.abs(fy - cy));
+  }
 
   function drawbetween(fx, fy, cx, cy) {
     if (fx == cx) {
@@ -51,6 +59,11 @@ $(document).ready(function() {
       }
     } else if (Math.abs(fx - cx) == Math.abs(fy - cy)) {
       console.log("DIAGNOL");
+      if (fx > cx) {
+        filldiag(cx, fx, cy, (cy - fy));
+      } else if (fx < cx) {
+        filldiag(fx, cx, fy, (fy - cy));
+      }
     } else {
       $("td.green:not(.first)").removeClass("green");
     }
@@ -70,6 +83,17 @@ $(document).ready(function() {
     }
   }
 
+  function filldiag(start, finish, y, y_diff) {
+    if (y_diff < 0) {
+      y_dir = 1;
+    } else {
+      y_dir = -1;
+    }
+    for (i = start; i < finish; i++, y += y_dir) {
+      b="td#"+index(i,y);
+      $(b).addClass("green");
+    }
+  }
 
   function index(fx, fy) {
     // TODO: This doesn't work! Too bad! I have to figure 
