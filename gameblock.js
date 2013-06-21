@@ -27,7 +27,7 @@ $(document).ready(function() {
     } else {
       if (!selectedSecondChar) {
         selectedSecondChar = true;
-        $(this).unbind("hover");
+        $("td").unbind("hover");
         $(this).addClass("second");
 	console.log("Evaluate the word, Rick!");
       }
