@@ -44,6 +44,11 @@ $(document).ready(function() {
       }
     } else if (fy == cy) {
       console.log("LEFT OR RIGHT");
+      if (fx > cx) {
+        fillhoriz(cx, fx, fy);
+      } else if (fx < cx) {
+        fillhoriz(fx, cx, fy);
+      }
     } else if (Math.abs(fx - cx) == Math.abs(fy - cy)) {
       console.log("DIAGNOL");
     } else {
@@ -52,12 +57,15 @@ $(document).ready(function() {
   }
 
   function fillvert(start, finish, x) {
-        // for (i = cy; i < fy; i++) {
-        //   b="td#"+index(fx,i);
-        //   $(b).addClass("green");
-        // }
     for (i = start; i < finish; i++) {
       b="td#"+index(x,i);
+      $(b).addClass("green");
+    }
+  }
+
+  function fillhoriz(start, finish, y) {
+    for (i = start; i < finish; i++) {
+      b="td#"+index(i,y);
       $(b).addClass("green");
     }
   }
