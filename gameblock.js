@@ -37,13 +37,10 @@ $(document).ready(function() {
   function drawbetween(fx, fy, cx, cy) {
     if (fx == cx) {
       console.log("UP or DOWN");
-      // TODO: I'll come up with some better or more clever
       if (fy > cy) {
-        for (i = cy; i < fy; i++) {
-          b="td#"+index(fx,i);
-          $(b).addClass("green");
-        }
+        fillvert(cy, fy, fx);
       } else if (fy < cy) {
+        fillvert(fy, cy, fx);
       }
     } else if (fy == cy) {
       console.log("LEFT OR RIGHT");
@@ -53,6 +50,18 @@ $(document).ready(function() {
       $("td.green:not(.first)").removeClass("green");
     }
   }
+
+  function fillvert(start, finish, x) {
+        // for (i = cy; i < fy; i++) {
+        //   b="td#"+index(fx,i);
+        //   $(b).addClass("green");
+        // }
+    for (i = start; i < finish; i++) {
+      b="td#"+index(x,i);
+      $(b).addClass("green");
+    }
+  }
+
 
   function index(fx, fy) {
     // TODO: This doesn't work! Too bad! I have to figure 
