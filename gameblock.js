@@ -45,12 +45,12 @@ $(document).ready(function() {
         }
       } else if (fy < cy) {
       }
-    }
-    if (fy == cy) {
+    } else if (fy == cy) {
       console.log("LEFT OR RIGHT");
-    }
-    if (Math.abs(fx - cx) == Math.abs(fy - cy)) {
+    } else if (Math.abs(fx - cx) == Math.abs(fy - cy)) {
       console.log("DIAGNOL");
+    } else {
+      $("td.green:not(.first)").removeClass("green");
     }
   }
 
