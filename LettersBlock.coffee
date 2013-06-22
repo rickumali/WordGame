@@ -41,7 +41,7 @@ jQuery ->
     for x in [0...lb.width]
       tot = x + y * lb.width
       $('tbody tr:last-child').append('<td>')
-      $td = $('tbody tr:last-child td:last-child')
-      $td.append(lb.letter(x, y))
-      $td.attr('id', tot)
-      jQuery.data($td[0], "data", { x: x, y: y, letter: lb.letter(x,y) })
+      td = $('tbody tr:last-child td:last-child')
+      td.append(lb.letter(x, y))
+      td.attr('id', tot)
+      jQuery.data(td[0], "data", { x: x, y: y, letter: lb.letter(x,y) })
