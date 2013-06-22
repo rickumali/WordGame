@@ -32,6 +32,17 @@ lb.genrandomletters()
 # This puts the lb object on the 'window', making it available 
 # for other scripts to use.
 window.lb = lb
+
+# See: http://aaronrussell.co.uk/articles/using-coffeescript-with-jquery/
+#
+# to see where I first learned about "jQuery ->" and CoffeeScript.
+#
+# What this syntax does is place the code in the lines following "jQuery ->"
+# in jQuery's ready() method. See:
+#
+# http://api.jquery.com/ready/
+#
+# Examine the resulting JavaScript file, and you'll hopefully "get it."
 jQuery -> 
   $('#game_block').append('<table></table>')
 
