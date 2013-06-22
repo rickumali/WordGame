@@ -28,8 +28,11 @@ class LettersBlock
 
 lb = new LettersBlock(10,10)
 lb.genrandomletters()
-  
-jQuery ->
+
+# This puts the lb object on the 'window', making it available 
+# for other scripts to use.
+window.lb = lb
+jQuery -> 
   $('#game_block').append('<table></table>')
 
   for y in [0...lb.height]

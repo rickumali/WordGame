@@ -96,10 +96,7 @@ $(document).ready(function() {
   }
 
   function index(fx, fy) {
-    // TODO: This doesn't work! Too bad! I have to figure 
-    // out how to get the LetterBlock object from in here.
-    // return (fx + fy * lb.width());
-    return (fx + fy * 10);
+    return (fx + fy * lb.width);
   }
 
 });
