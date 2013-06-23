@@ -20,19 +20,31 @@ class LettersBlock
   height: ->
     @height
 
-  addword_north: (word, first_x, first_y, direction, reverse) ->
+  reverse: (s) -> 
+    b = ""
+    for i in [s.length-1..0]
+      b += s[i]
+    return b
+
+  addword_vert: (word, first_x, first_y, direction, rev = false) ->
     y = first_y
+    if rev
+      word = @reverse(word)
+      console.log("reverse: " + word)
     for l in word
       @letters[first_x + (y * @width)] = l
-      y--
+      if direction == "N"
+        y--
+      else if direction == "S"
+        y++
 
-  addword: (word, first_x, first_y, direction, reverse) ->
+  addword: (word, first_x, first_y, direction, rev) ->
     switch direction
-      when "N"  then @addword_north(word, first_x, first_y, reverse)
+      when "N"  then @addword_vert(word, first_x, first_y, direction, rev)
       when "NE" then console.log("NE not implemented")
       when "E"  then console.log("E not implemented")
       when "SE" then console.log("SE not implemented")
-      when "S"  then console.log("S not implemented")
+      when "S"  then @addword_vert(word, first_x, first_y, direction, rev)
       when "SW" then console.log("SW not implemented")
       when "W"  then console.log("W not implemented")
       when "NW" then console.log("NW not implemented")
@@ -47,6 +59,7 @@ class LettersBlock
 lb = new LettersBlock(10,10)
 lb.genrandomletters()
 lb.addword("summer", 2, 8, "N", false)
+lb.addword("fall", 3, 0, "S", true)
 
 # This puts the lb object on the 'window', making it available 
 # for other scripts to use.
