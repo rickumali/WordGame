@@ -20,6 +20,24 @@ class LettersBlock
   height: ->
     @height
 
+  addword_north: (word, first_x, first_y, direction, reverse) ->
+    y = first_y
+    for l in word
+      @letters[first_x + (y * @width)] = l
+      y--
+
+  addword: (word, first_x, first_y, direction, reverse) ->
+    switch direction
+      when "N"  then @addword_north(word, first_x, first_y, reverse)
+      when "NE" then console.log("NE not implemented")
+      when "E"  then console.log("E not implemented")
+      when "SE" then console.log("SE not implemented")
+      when "S"  then console.log("S not implemented")
+      when "SW" then console.log("SW not implemented")
+      when "W"  then console.log("W not implemented")
+      when "NW" then console.log("NW not implemented")
+      else           console.log("Wrong!")
+
   # Gets the letter at row y, and column x
   # We should assume the caller won't use a value greater
   # than the @width or @height
@@ -28,6 +46,7 @@ class LettersBlock
 
 lb = new LettersBlock(10,10)
 lb.genrandomletters()
+lb.addword("summer", 2, 8, "N", false)
 
 # This puts the lb object on the 'window', making it available 
 # for other scripts to use.
