@@ -29,6 +29,7 @@ jQuery ->
       fy = jQuery.data($(".first")[0], "data").y
       cx = jQuery.data($(this)[0], "data").x
       cy = jQuery.data($(this)[0], "data").y
+      return if (fx == cx) && (fy == cy)
       if !selectedSecondChar && validshape(fx, fy, cx, cy)
         selectedSecondChar = true
         $("td").unbind("hover")
