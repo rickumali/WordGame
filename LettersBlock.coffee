@@ -30,7 +30,6 @@ class LettersBlock
     y = first_y
     if rev
       word = @reverse(word)
-      console.log("reverse: " + word)
     for l in word
       @letters[first_x + (y * @width)] = l
       if direction == "N"
