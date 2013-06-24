@@ -67,6 +67,7 @@ lb = new LettersBlock(10,10)
 lb.genrandomletters()
 lb.addword("summer", 2, 8, "N", false)
 lb.addword("fall", 3, 0, "S", true)
+lb.addword("winter", 5, 3, "S", true)
 
 # This puts the lb object on the 'window', making it available 
 # for other scripts to use.
