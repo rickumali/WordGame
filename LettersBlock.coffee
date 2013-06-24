@@ -4,6 +4,7 @@
 class LettersBlock
   constructor: (@width, @height) ->
     @letters = []
+    @words = []
  
   # This will generate width * height letters into an array
   genrandomletters: ->
@@ -38,6 +39,7 @@ class LettersBlock
         y++
 
   addword: (word, first_x, first_y, direction, rev) ->
+    @words.push word
     switch direction
       when "N"  then @addword_vert(word, first_x, first_y, direction, rev)
       when "NE" then console.log("NE not implemented")
@@ -54,6 +56,12 @@ class LettersBlock
   # than the @width or @height
   letter: (x, y) ->
     @letters[x + (y * @width)]
+
+  isWord: (wrd) -> 
+    for word in @words
+      if word == wrd || @reverse(word) == wrd
+        return word
+    return ""
 
 lb = new LettersBlock(10,10)
 lb.genrandomletters()

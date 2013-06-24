@@ -34,8 +34,28 @@ jQuery ->
         selectedSecondChar = true
         $("td").unbind("hover")
         $(this).addClass("second")
-        console.log("Evaluate the word, Rick!")
+        w = lb.isWord(makeword(getletters(fx, fy, cx, cy)))
+        console.log("You found " + w) if w != ""
   $("td").click(clickHandler)
+
+  getletters = (fx, fy, cx, cy) -> 
+    if fx == cx
+      if fy > cy
+        return vertletters(cy, fy, fx)
+      else if fy < cy
+        return vertletters(fy, cy, fx)
+    else if fy == cy
+      if (fx > cx)
+        fillhoriz(cx, fx, fy)
+      else if fx < cx
+        fillhoriz(fx, cx, fy)
+    else if Math.abs(fx - cx) == Math.abs(fy - cy)
+      if fx > cx
+        filldiag(cx, fx, cy, cy - fy)
+      else if fx < cx
+        filldiag(fx, cx, fy, fy - cy)
+    else
+      $("td.green:not(.first)").removeClass("green")
 
   validshape = (fx, fy, cx, cy) -> 
     return (fx == cx) || (fy == cy) || (Math.abs(fx - cx) == Math.abs(fy - cy))
@@ -79,5 +99,18 @@ jQuery ->
       $(b).addClass("green")
       y += y_dir
 
+  vertletters = (start, finish, x) -> 
+    lets = []
+    for i in [start..finish]
+      b="td#"+index(x,i)
+      lets.push jQuery.data($(b)[0], "data").letter
+    return lets
+
   index = (fx, fy) -> 
     return (fx + fy * lb.width)
+
+  makeword = (lets) -> 
+    word = ""
+    for l in lets
+      word += l
+    return word
