@@ -4,22 +4,27 @@ h1 {
 
 p.instructions {
   text-align: center;
-  font-size: small;
 }
 
-table {
+div#game_block table {
   font-weight: monospace;
   font-size: 200%;
   border-collapse: collapse;
   border: 1px solid #7a7;
 }
 
-table td {
+div#game_block table td {
   text-align: center;
   padding: 2px;
   border: 1px solid #7a7;
 }
 
-td.green {
+div#game_block table td.green {
   background: green;
+}
+
+div#word_list table {
+  border: 1px;
+  width: 30%;
+  float: right;
 }

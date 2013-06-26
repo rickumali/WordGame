@@ -96,3 +96,7 @@ jQuery ->
       td.append(lb.letter(x, y))
       td.attr('id', tot)
       jQuery.data(td[0], "data", { x: x, y: y, letter: lb.letter(x,y) })
+
+  $('#word_list').append('<table></table>')
+  for w in lb.words
+    $('#word_list table').append("<tr><td>#{w}")
