@@ -1,19 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-<meta charset="utf-8"/>
-<title>Word Game</title>
-<link href="style.css" rel="stylesheet" type="text/css" media="all">
-<script src="jquery-1.7.2.js"></script>
-<script src="LettersBlock.js"></script>
-<script src="GameController.js"></script>
+	<meta charset="utf-8">
+	<title>Word Game</title>
+	<meta name="description" content="You know. A find-the-word game.">
+	<meta name="author" content="Rick Umali">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link rel="stylesheet" href="stylesheets/base.css">
+	<link rel="stylesheet" href="stylesheets/skeleton.css">
+	<link rel="stylesheet" href="stylesheets/layout.css">
+	<link rel="stylesheet" href="stylesheets/style.css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script src="jquery-1.7.2.js"></script>
+	<script src="LettersBlock.js"></script>
+	<script src="GameController.js"></script>
 </head>
 <body>
-<h1>Find The Word</h1>
-<p class="instructions">OK, buddy. Find the word. Click on the first letter, then click on the last letter of the word. The word can be found left-to-right, top-to-bottom, or diagonally.</p>
-<div id="game_block">
-</div>
-<div id="word_list">
+<div class="container">
+	<div class="sixteen columns">
+		<p class="instructions">OK, buddy. Find the word. Click on the first letter, then click on the last letter of the word. The word can be found left-to-right, top-to-bottom, or diagonally.</p>
+	</div>
+	<div class="two-third column">
+		<div id="game_block">
+		</div>
+	</div>
+	<div class="one-third column">
+		<div id="word_list">
+		</div>
+	</div>
 </div>
 </body>
 </html>
