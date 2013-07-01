@@ -35,7 +35,10 @@ jQuery ->
         $("td").unbind("hover")
         $(this).addClass("second")
         w = lb.isWord(makeword(getletters(fx, fy, cx, cy)))
-        console.log("You found " + w) if w != ""
+        if w != ""
+          console.log("You found " + w) 
+          $("td.green").animate({borderLeftWidth: '10px'}, 1000)
+          $("td.green").removeClass("green")
   $("td").click(clickHandler)
 
   getletters = (fx, fy, cx, cy) -> 
