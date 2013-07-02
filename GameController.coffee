@@ -6,7 +6,7 @@ jQuery ->
   enterHandler = (ev) -> 
     if selectedSecondChar
       return
-    $(this).addClass("green")
+    $(this).addClass("highlighted")
     if selectedFirstChar
       fx = jQuery.data($(".first")[0], "data").x
       fy = jQuery.data($(".first")[0], "data").y
@@ -15,7 +15,7 @@ jQuery ->
       drawbetween(fx, fy, cx, cy)
 
   leaveHandler = (ev) ->
-    $(this).removeClass("green")
+    $(this).removeClass("highlighted")
 
   $("td").hover(enterHandler, leaveHandler)
 
@@ -37,8 +37,13 @@ jQuery ->
         w = lb.isWord(makeword(getletters(fx, fy, cx, cy)))
         if w != ""
           console.log("You found " + w) 
-          $("td.green").animate({borderLeftWidth: '10px'}, 1000)
-          $("td.green").removeClass("green")
+          $("td.highlighted").addClass("found")
+        $("td.highlighted").removeClass("highlighted")
+        $("td").removeClass("first")
+        $("td").removeClass("second")
+        selectedFirstChar = false
+        selectedSecondChar = false
+        $("td").hover(enterHandler, leaveHandler)
   $("td").click(clickHandler)
 
   getletters = (fx, fy, cx, cy) -> 
@@ -58,7 +63,7 @@ jQuery ->
       else if fx < cx
         filldiag(fx, cx, fy, fy - cy)
     else
-      $("td.green:not(.first)").removeClass("green")
+      $("td.highlighted:not(.first)").removeClass("highlighted")
 
   validshape = (fx, fy, cx, cy) -> 
     return (fx == cx) || (fy == cy) || (Math.abs(fx - cx) == Math.abs(fy - cy))
@@ -80,17 +85,17 @@ jQuery ->
       else if fx < cx
         filldiag(fx, cx, fy, fy - cy)
     else
-      $("td.green:not(.first)").removeClass("green")
+      $("td.highlighted:not(.first)").removeClass("highlighted")
 
   fillvert = (start, finish, x) -> 
     for i in [start...finish]
       b="td#"+index(x,i)
-      $(b).addClass("green")
+      $(b).addClass("highlighted")
 
   fillhoriz = (start, finish, y) -> 
     for i in [start...finish]
       b="td#"+index(i,y)
-      $(b).addClass("green")
+      $(b).addClass("highlighted")
 
   filldiag = (start, finish, y, y_diff) ->
     if y_diff < 0
@@ -99,7 +104,7 @@ jQuery ->
       y_dir = -1
     for i in [start...finish]
       b="td#"+index(i,y)
-      $(b).addClass("green")
+      $(b).addClass("highlighted")
       y += y_dir
 
   vertletters = (start, finish, x) -> 

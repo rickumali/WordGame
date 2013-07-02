@@ -22,7 +22,11 @@ div#game_block table td {
   border: 1px solid #7a7;
 }
 
-div#game_block table td.green {
+div#game_block table td.highlighted {
+  background: yellow;
+}
+
+div#game_block table td.found {
   background: green;
 }
 
