@@ -99,4 +99,4 @@ jQuery ->
 
   $('#word_list').append('<table></table>')
   for w in lb.words
-    $('#word_list table').append("<tr><td>#{w}")
+    $('#word_list table').append("<tr><td id=\"#{w}\">#{w}")

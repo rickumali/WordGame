@@ -38,6 +38,7 @@ jQuery ->
         if w != ""
           console.log("You found " + w) 
           $("td.highlighted").addClass("found")
+          $("td##{w}").addClass("found")
         $("td.highlighted").removeClass("highlighted")
         $("td").removeClass("first")
         $("td").removeClass("second")

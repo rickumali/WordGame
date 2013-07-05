@@ -26,7 +26,7 @@ div#game_block table td.highlighted {
   background: yellow;
 }
 
-div#game_block table td.found {
+td.found {
   background: green;
 }
 
