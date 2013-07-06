@@ -5,6 +5,7 @@ class LettersBlock
   constructor: (@width, @height) ->
     @letters = []
     @words = []
+    @words_found = {}
  
   # This will generate width * height letters into an array
   genrandomletters: ->
@@ -40,6 +41,7 @@ class LettersBlock
 
   addword: (word, first_x, first_y, direction, rev) ->
     @words.push word
+    @words_found[word] = false
     switch direction
       when "N"  then @addword_vert(word, first_x, first_y, direction, rev)
       when "NE" then console.log("NE not implemented")
@@ -62,6 +64,15 @@ class LettersBlock
       if word == wrd || @reverse(word) == wrd
         return word
     return ""
+
+  markWordFound: (wrd) -> 
+    @words_found[wrd] = true
+
+  allWordsFound: -> 
+    for word in @words
+      if !@words_found[word]
+        return false
+    return true
 
 lb = new LettersBlock(10,10)
 lb.genrandomletters()

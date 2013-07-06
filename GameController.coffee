@@ -37,8 +37,11 @@ jQuery ->
         w = lb.isWord(makeword(getletters(fx, fy, cx, cy)))
         if w != ""
           console.log("You found " + w) 
+          lb.markWordFound(w)
           $("td.highlighted").addClass("found")
           $("td##{w}").addClass("found")
+          if lb.allWordsFound()
+            console.log("All words found! Hurray!")
         $("td.highlighted").removeClass("highlighted")
         $("td").removeClass("first")
         $("td").removeClass("second")
