@@ -1,5 +1,6 @@
 jQuery ->
 
+  isDragging = false
   selectedFirstChar = false
   selectedSecondChar = false
 
@@ -49,6 +50,27 @@ jQuery ->
         selectedSecondChar = false
         $("td").hover(enterHandler, leaveHandler)
   $("td").click(clickHandler)
+
+  mousemoveHandler = (ev) ->
+    isDragging = true;
+    $(window).unbind("mousemove");
+
+  mouseDownHandler = (ev) ->
+    console.log('Mouse is down')
+    $(window).mousemove(mousemoveHandler)
+
+  mouseUpHandler = (ev) ->
+    console.log('Mouse is up')
+    wasDragging = isDragging
+    isDragging = false
+    $(window).unbind("mousemove");
+    if (wasDragging)
+      console.log('You were dragging')
+    else
+      console.log('You weren\'t dragging')
+  
+  $("td").mousedown(mouseDownHandler)
+  $("td").mouseup(mouseUpHandler)
 
   getletters = (fx, fy, cx, cy) -> 
     if fx == cx

@@ -16,6 +16,25 @@ div#game_block table {
   border: 1px solid #7a7;
 }
 
+/*
+ * This block removes the 'select' capability for the table containing
+ * the letters. This is to implement drag-selecting of words.
+ *
+ * See these posts:
+ *
+ * http://stackoverflow.com/questions/1319126/prevent-highlight-of-text-table/
+ * http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting
+ *
+ */
+div#game_block table {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: moz-none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 div#game_block table td {
   text-align: center;
   padding: 10px;
