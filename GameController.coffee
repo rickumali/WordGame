@@ -111,9 +111,9 @@ jQuery ->
         return vertletters(fy, cy, fx)
     else if fy == cy
       if (fx > cx)
-        fillhoriz(cx, fx, fy)
+        return horizletters(cx, fx, fy)
       else if fx < cx
-        fillhoriz(fx, cx, fy)
+        return horizletters(fx, cx, fy)
     else if Math.abs(fx - cx) == Math.abs(fy - cy)
       if fx > cx
         filldiag(cx, fx, cy, cy - fy)
@@ -168,6 +168,13 @@ jQuery ->
     lets = []
     for i in [start..finish]
       b="td#"+index(x,i)
+      lets.push jQuery.data($(b)[0], "data").letter
+    return lets
+
+  horizletters = (start, finish, y) -> 
+    lets = []
+    for i in [start..finish]
+      b="td#"+index(i, y)
       lets.push jQuery.data($(b)[0], "data").letter
     return lets
 
