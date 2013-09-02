@@ -50,18 +50,39 @@ class LettersBlock
       else if direction == "W"
         x++
 
+  addword_diag: (word, first_x, first_y, direction, rev = false) ->
+    if rev
+      word = @reverse(word)
+    x = 0
+    y = 0
+    # Break apart the direction into north/south, and east/west
+    vert = direction[0]
+    horiz = direction[1]
+    if vert == "N"
+      y_dir = -1
+    else if vert == "S"
+      y_dir = 1
+    if horiz == "E"
+      x_dir = 1
+    else if horiz == "W"
+      x_dir = -1
+    for l in word
+      @letters[first_x + x + ((first_y + y) * @width )] = l
+      x += x_dir
+      y += y_dir
+
   addword: (word, first_x, first_y, direction, rev) ->
     @words.push word
     @words_found[word] = false
     switch direction
       when "N"  then @addword_vert(word, first_x, first_y, direction, rev)
-      when "NE" then console.log("NE not implemented")
+      when "NE" then @addword_diag(word, first_x, first_y, direction, rev)
       when "E"  then @addword_horiz(word, first_x, first_y, direction, rev)
       when "SE" then console.log("SE not implemented")
       when "S"  then @addword_vert(word, first_x, first_y, direction, rev)
       when "SW" then console.log("SW not implemented")
       when "W"  then @addword_horiz(word, first_x, first_y, direction, rev)
-      when "NW" then console.log("NW not implemented")
+      when "NW" then @addword_diag(word, first_x, first_y, direction, rev)
       else           console.log("Wrong!")
 
   # Gets the letter at row y, and column x
@@ -92,6 +113,8 @@ lb.addword("fall", 3, 0, "S", true)
 lb.addword("winter", 5, 3, "S", true)
 lb.addword("spring", 0, 9, "W", false)
 lb.addword("ate", 9, 9, "E", true)
+lb.addword("snow", 6, 3, "NE", false)
+lb.addword("leaf", 9, 7, "NW", false)
 
 # This puts the lb object on the 'window', making it available 
 # for other scripts to use.
