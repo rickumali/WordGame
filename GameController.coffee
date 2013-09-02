@@ -116,11 +116,9 @@ jQuery ->
         return horizletters(fx, cx, fy)
     else if Math.abs(fx - cx) == Math.abs(fy - cy)
       if fx > cx
-        filldiag(cx, fx, cy, cy - fy)
+        return diagletters(cx, fx, cy, cy - fy)
       else if fx < cx
-        filldiag(fx, cx, fy, fy - cy)
-    else
-      $("td.highlighted:not(.first)").removeClass("highlighted")
+        return diagletters(fx, cx, fy, fy - cy)
 
   validshape = (fx, fy, cx, cy) -> 
     return (fx == cx) || (fy == cy) || (Math.abs(fx - cx) == Math.abs(fy - cy))
@@ -159,7 +157,7 @@ jQuery ->
       y_dir = 1
     else
       y_dir = -1
-    for i in [start...finish]
+    for i in [start..finish]
       b="td#"+index(i,y)
       $(b).addClass("highlighted")
       y += y_dir
@@ -176,6 +174,18 @@ jQuery ->
     for i in [start..finish]
       b="td#"+index(i, y)
       lets.push jQuery.data($(b)[0], "data").letter
+    return lets
+
+  diagletters = (start, finish, y, y_diff) ->
+    lets = []
+    if y_diff < 0
+      y_dir = 1
+    else
+      y_dir = -1
+    for i in [start..finish]
+      b="td#"+index(i,y)
+      lets.push jQuery.data($(b)[0], "data").letter
+      y += y_dir
     return lets
 
   index = (fx, fy) -> 
