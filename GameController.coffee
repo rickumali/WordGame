@@ -1,4 +1,41 @@
+# See: http://aaronrussell.co.uk/articles/using-coffeescript-with-jquery/
+#
+# to see where I first learned about "jQuery ->" and CoffeeScript.
+#
+# What this syntax does is place the code in the lines following "jQuery ->"
+# in jQuery's ready() method. See:
+#
+# http://api.jquery.com/ready/
+#
+# Examine the resulting JavaScript file, and you'll hopefully "get it."
 jQuery ->
+  lb.genrandomletters()
+  lb.addword("summer", 2, 8, "N", false)
+  lb.addword("fall", 3, 0, "S", true)
+  lb.addword("winter", 5, 3, "S", true)
+  lb.addword("spring", 0, 9, "W", false)
+  lb.addword("ate", 9, 9, "E", true)
+  lb.addword("snow", 6, 3, "NE", false)
+  lb.addword("leaf", 9, 7, "NW", false)
+  lb.addword("fir", 0, 1, "SE", false)
+  lb.addword("mop", 2, 5, "SW", false)
+  
+  $('#game_block').append('<table></table>')
+
+  for y in [0...lb.height]
+    $('table').append('<tr>')
+
+    for x in [0...lb.width]
+      tot = x + y * lb.width
+      $('tbody tr:last-child').append('<td>')
+      td = $('tbody tr:last-child td:last-child')
+      td.append(lb.letter(x, y))
+      td.attr('id', tot)
+      jQuery.data(td[0], "data", { x: x, y: y, letter: lb.letter(x,y) })
+
+  $('#word_list').append('<table></table>')
+  for w in lb.words
+    $('#word_list table').append("<tr><td id=\"#{w}\">#{w}")
 
   isDragging = false
   selectedFirstChar = false
