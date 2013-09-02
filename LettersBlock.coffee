@@ -78,9 +78,9 @@ class LettersBlock
       when "N"  then @addword_vert(word, first_x, first_y, direction, rev)
       when "NE" then @addword_diag(word, first_x, first_y, direction, rev)
       when "E"  then @addword_horiz(word, first_x, first_y, direction, rev)
-      when "SE" then console.log("SE not implemented")
+      when "SE" then @addword_diag(word, first_x, first_y, direction, rev)
       when "S"  then @addword_vert(word, first_x, first_y, direction, rev)
-      when "SW" then console.log("SW not implemented")
+      when "SW" then @addword_diag(word, first_x, first_y, direction, rev)
       when "W"  then @addword_horiz(word, first_x, first_y, direction, rev)
       when "NW" then @addword_diag(word, first_x, first_y, direction, rev)
       else           console.log("Wrong!")
@@ -115,6 +115,8 @@ lb.addword("spring", 0, 9, "W", false)
 lb.addword("ate", 9, 9, "E", true)
 lb.addword("snow", 6, 3, "NE", false)
 lb.addword("leaf", 9, 7, "NW", false)
+lb.addword("fir", 0, 1, "SE", false)
+lb.addword("mop", 2, 5, "SW", false)
 
 # This puts the lb object on the 'window', making it available 
 # for other scripts to use.
