@@ -36,6 +36,7 @@ jQuery ->
         $("td").unbind("hover")
         $(this).addClass("second")
         w = lb.isWord(makeword(getletters(fx, fy, cx, cy)))
+        console.log("Check: " + makeword(getletters(fx, fy, cx, cy)))
         if w != ""
           console.log("You found " + w) 
           lb.markWordFound(w)
@@ -57,6 +58,11 @@ jQuery ->
 
   mouseDownHandler = (ev) ->
     console.log('Mouse is down')
+    # NOTE: Repeated code used in clickHandler
+    if !selectedFirstChar
+      selectedFirstChar = true
+      $(this).unbind("hover")
+      $(this).addClass("first")
     $(window).mousemove(mousemoveHandler)
 
   mouseUpHandler = (ev) ->
@@ -66,6 +72,31 @@ jQuery ->
     $(window).unbind("mousemove");
     if (wasDragging)
       console.log('You were dragging')
+      # NOTE: Repeated code used in clickHandler
+      fx = jQuery.data($(".first")[0], "data").x
+      fy = jQuery.data($(".first")[0], "data").y
+      cx = jQuery.data($(this)[0], "data").x
+      cy = jQuery.data($(this)[0], "data").y
+      return if (fx == cx) && (fy == cy)
+      if !selectedSecondChar && validshape(fx, fy, cx, cy)
+        selectedSecondChar = true
+        $("td").unbind("hover")
+        $(this).addClass("second")
+        w = lb.isWord(makeword(getletters(fx, fy, cx, cy)))
+        console.log("Check: " + makeword(getletters(fx, fy, cx, cy)))
+        if w != ""
+          console.log("You found " + w)
+          lb.markWordFound(w)
+          $("td.highlighted").addClass("found")
+          $("td##{w}").addClass("found")
+          if lb.allWordsFound()
+            console.log("All words found! Hurray!")
+        $("td.highlighted").removeClass("highlighted")
+        $("td").removeClass("first")
+        $("td").removeClass("second")
+        selectedFirstChar = false
+        selectedSecondChar = false
+        $("td").hover(enterHandler, leaveHandler)
     else
       console.log('You weren\'t dragging')
   
