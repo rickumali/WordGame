@@ -20,6 +20,11 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
+	<script>
+		// To prevent IE errors when it sees console.log() function
+		// See: http://stackoverflow.com/questions/7585351/testing-for-console-log-statements-in-ie
+		if ( ! window.console) console = { log: function(){} };
+	</script>
 	<script src="jquery-1.7.2.js"></script>
 	<script src="LettersBlock.js"></script>
 	<script src="GameController.js"></script>
